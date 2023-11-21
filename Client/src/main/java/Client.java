@@ -96,3 +96,4 @@ public class Client {
   }
 
 }
+check my code for errors
