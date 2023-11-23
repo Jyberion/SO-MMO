@@ -1,3 +1,6 @@
-C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\Client.java
-C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\client\Message.java
-C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\client\NetworkClientHandler.java
+C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\client\auth\AuthServerMessage.java
+C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\client\auth\AuthServerMessageType.java
+C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\client\auth\AuthenticationHandler.java
+C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\ByteBuffer.java
+C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\client\auth\AuthServerHandler.java
+C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\client\Client.java
