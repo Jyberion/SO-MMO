@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslHandler;
 
 import java.net.InetSocketAddress;
@@ -15,10 +16,11 @@ public class AuthenticationHandler extends ChannelHandlerAdapter {
 
     private String username;
     private String password;
-    private SSLContext sslContext;
+    private SslContext sslContext; // Change the type to io.netty.handler.ssl.SslContext
     private boolean isAuthenticated;
 
-    public AuthenticationHandler(SSLContext sslContext) {
+    // Constructor that takes io.netty.handler.ssl.SslContext as a parameter
+    public AuthenticationHandler(SslContext sslContext) {
         this.sslContext = sslContext;
         this.isAuthenticated = false;
     }
@@ -42,7 +44,7 @@ public class AuthenticationHandler extends ChannelHandlerAdapter {
         }
 
         // Establish SSL connection with the Authentication Server
-        SslHandler sslHandler = new SslHandler(sslContext.createSSLEngine());
+        SslHandler sslHandler = sslContext.newHandler(ctx.alloc());
         ctx.pipeline().addFirst(sslHandler);
         sslHandler.handshakeFuture().sync();
 
@@ -82,42 +84,41 @@ public class AuthenticationHandler extends ChannelHandlerAdapter {
         }
     }
 
-public void handleConnection(ChannelHandlerContext ctx) throws Exception {
-    SocketChannel socketChannel = (SocketChannel) ctx.channel();
+    public void handleConnection(ChannelHandlerContext ctx) throws Exception {
+        SocketChannel socketChannel = (SocketChannel) ctx.channel();
 
-    try {
-        socketChannel.connect(new InetSocketAddress("localhost", 8080)).sync();
+        try {
+            socketChannel.connect(new InetSocketAddress("localhost", 8080)).sync();
 
-        // Handle communication with the Authentication Server
-        InetSocketAddress address = (InetSocketAddress) socketChannel.remoteAddress();
-        System.out.println("Connected to Authentication Server at: " + address.getHostName() + ":" + address.getPort());
+            // Handle communication with the Authentication Server
+            InetSocketAddress address = (InetSocketAddress) socketChannel.remoteAddress();
+            System.out.println("Connected to Authentication Server at: " + address.getHostName() + ":" + address.getPort());
 
-        // Prepare and send authentication request message
-        AuthServerMessage authRequest = new AuthServerMessage(AuthServerMessageType.LOGIN_REQUEST);
-        authRequest.setUsername(username);
-        authRequest.setPassword(password);
-        socketChannel.writeAndFlush(authRequest);
+            // Prepare and send authentication request message
+            AuthServerMessage authRequest = new AuthServerMessage(AuthServerMessageType.LOGIN_REQUEST);
+            authRequest.setUsername(username);
+            authRequest.setPassword(password);
+            socketChannel.writeAndFlush(authRequest);
 
-        // Receive and process authentication response message
-        ByteBuf responseBuf = ctx.alloc().buffer(); // Use ByteBuf from ctx
-        // NOTE: Here we are using the ctx channel, not the socketChannel directly
-        ctx.channel().read(); // Trigger the read operation
+            // Receive and process authentication response message
+            ByteBuf responseBuf = ctx.alloc().buffer(); // Use ByteBuf from ctx
+            // NOTE: Here we are using the ctx channel, not the socketChannel directly
+            ctx.channel().read(); // Trigger the read operation
 
-        // You can now handle the received data in the channelRead method
+            // You can now handle the received data in the channelRead method
 
-    } finally {
-        // Close the socket channel
-        socketChannel.close();
+        } finally {
+            // Close the socket channel
+            socketChannel.close();
+        }
+
+        // Perform the intended operation if authentication is successful
+        if (isAuthenticated) {
+            System.out.println("Sending data to the protected resource...");
+
+            // Prepare and send data to the protected resource
+            String data = "This is the data to be sent to the protected resource.";
+            socketChannel.writeAndFlush(data.getBytes());
+        }
     }
-
-    // Perform the intended operation if authentication is successful
-    if (isAuthenticated) {
-        System.out.println("Sending data to the protected resource...");
-
-        // Prepare and send data to the protected resource
-        String data = "This is the data to be sent to the protected resource.";
-        socketChannel.writeAndFlush(data.getBytes());
-    }
-}
-
 }

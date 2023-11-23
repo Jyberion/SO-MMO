@@ -13,6 +13,10 @@
             <id>sonatype-oss-public</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>maven-public</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
     </repositories>
 
     <properties>
@@ -22,14 +26,13 @@
         <exec.mainClass>com.client.Client</exec.mainClass>
     </properties>
 
-    <!-- Add the dependencies section with Netty -->
     <dependencies>
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.1.70.Final</version> <!-- Use the latest version available -->
+            <version>4.1.101.Final</version>
         </dependency>
-        <!-- Add more dependencies as needed -->
+
     </dependencies>
 </project>
 
