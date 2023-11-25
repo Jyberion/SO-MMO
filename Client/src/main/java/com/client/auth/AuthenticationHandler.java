@@ -10,16 +10,13 @@ import io.netty.handler.ssl.SslHandler;
 import java.net.InetSocketAddress;
 import java.util.Scanner;
 
-import javax.net.ssl.SSLContext;
-
 public class AuthenticationHandler extends ChannelHandlerAdapter {
 
     private String username;
     private String password;
-    private SslContext sslContext; // Change the type to io.netty.handler.ssl.SslContext
+    private SslContext sslContext;
     private boolean isAuthenticated;
 
-    // Constructor that takes io.netty.handler.ssl.SslContext as a parameter
     public AuthenticationHandler(SslContext sslContext) {
         this.sslContext = sslContext;
         this.isAuthenticated = false;
@@ -35,7 +32,6 @@ public class AuthenticationHandler extends ChannelHandlerAdapter {
 
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         try (Scanner scanner = new Scanner(System.in)) {
-            // Prompt the user for username and password
             System.out.print("Enter username: ");
             setUsername(scanner.nextLine());
 
@@ -43,12 +39,25 @@ public class AuthenticationHandler extends ChannelHandlerAdapter {
             setPassword(scanner.nextLine());
         }
 
-        // Establish SSL connection with the Authentication Server
+        try {
+            // Establish SSL connection with the Authentication Server
+            establishSslConnection(ctx);
+
+            // Create and send authentication request to the Authentication Server
+            sendAuthenticationRequest(ctx);
+        } catch (Exception e) {
+            System.err.println("Error during authentication: " + e.getMessage());
+            // Handle the error appropriately
+        }
+    }
+
+    private void establishSslConnection(ChannelHandlerContext ctx) throws InterruptedException {
         SslHandler sslHandler = sslContext.newHandler(ctx.alloc());
         ctx.pipeline().addFirst(sslHandler);
         sslHandler.handshakeFuture().sync();
+    }
 
-        // Create and send authentication request to the Authentication Server
+    private void sendAuthenticationRequest(ChannelHandlerContext ctx) {
         AuthServerMessage authRequest = new AuthServerMessage(AuthServerMessageType.LOGIN_REQUEST);
         authRequest.setUsername(username);
         authRequest.setPassword(password);
@@ -62,7 +71,7 @@ public class AuthenticationHandler extends ChannelHandlerAdapter {
             byteBuf.readBytes(responseBytes);
 
             // Process the received data
-            // ...
+            // Add your logic here to handle the received data
 
             // Release the ByteBuf
             byteBuf.release();

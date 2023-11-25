@@ -18,21 +18,35 @@
             <url>https://repo1.maven.org/maven2/</url>
         </repository>
     </repositories>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.mina</groupId>
+            <artifactId>build</artifactId>
+            <version>2.0.0-RC1</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.101.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-parent</artifactId>
+            <version>2.0.0-alpha0</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.mini2Dx</groupId>
+            <artifactId>mini2dx-libgdx</artifactId>
+            <version>2.0.0-alpha.82</version>
+        </dependency>
+    </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>com.client.Client</exec.mainClass>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>4.1.101.Final</version>
-        </dependency>
-
-    </dependencies>
 </project>
 

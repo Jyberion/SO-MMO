@@ -7,21 +7,16 @@ public class AuthServerMessage {
     private String username;
     private String password;
 
-    public void setUsername(String username)
- 
-{
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setPassword(String password)
- 
-{
+    public void setPassword(String password) {
         this.password = password;
     }
 
     public AuthServerMessage(AuthServerMessageType type) {
-        this.type = type;
-        this.message = null;
+        this(type, null); // Initialize message as null for simplicity
     }
 
     public AuthServerMessage(AuthServerMessageType type, String message) {
@@ -38,8 +33,12 @@ public class AuthServerMessage {
     }
 
     public static AuthServerMessage parseMessage(String responseMessage) {
-        String[] messageParts = responseMessage.split(":");
+        if (responseMessage == null) {
+            throw new IllegalArgumentException("Response message cannot be null");
+        }
 
+        String[] messageParts = responseMessage.split(":");
+        
         if (messageParts.length != 2) {
             throw new IllegalArgumentException("Invalid message format: " + responseMessage);
         }
@@ -52,6 +51,6 @@ public class AuthServerMessage {
 
     @Override
     public String toString() {
-        return type + ":" + message;
+        return type + ":" + (message != null ? message : ""); // Handle null message more gracefully
     }
 }
