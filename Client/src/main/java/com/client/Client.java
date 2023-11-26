@@ -1,13 +1,7 @@
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.client.auth.AuthServerMessage;
-import com.client.auth.AuthServerMessageType;
+package com.client;
+
+import com.client.provider.UIManager;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelInitializer;
@@ -19,23 +13,31 @@ import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslHandler;
 import io.netty.handler.ssl.SslProvider;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
-
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.client.auth.AuthServerMessage;
+import com.client.auth.AuthServerMessageType;
+import io.netty.channel.Channel;
 import java.net.InetSocketAddress;
 
 public class Client extends ApplicationAdapter {
 
-    private Label statusLabel;
-    private Stage stage;
-    private Skin skin;
+    private UIManager uiManager;
     private Channel channel;
 
     @Override
     public void create() {
-        stage = new Stage(new ScreenViewport());
-        skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
-
-        statusLabel = new Label("Connecting...", skin);
-        stage.addActor(statusLabel);
+        uiManager = new UIManager();
+        uiManager.setLoginClickListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                uiManager.sendAuthenticationMessage(channel);
+            }
+        });
 
         // Start the Netty client in a separate thread
         new Thread(() -> {
@@ -49,9 +51,12 @@ public class Client extends ApplicationAdapter {
 
     @Override
     public void render() {
-        // Update and draw the stage
-        stage.act();
-        stage.draw();
+        uiManager.draw();
+    }
+
+    @Override
+    public void dispose() {
+        uiManager.dispose();
     }
 
     private void startNettyClient() throws Exception {
@@ -96,25 +101,9 @@ public class Client extends ApplicationAdapter {
 
     // Main entry point
     public static void main(String[] args) {
-        // Example usage of enum constants
-        AuthServerMessageType messageType = AuthServerMessageType.LOGIN_REQUEST;
-
-        // Switch statement to handle different message types
-        switch (messageType) {
-            case LOGIN_REQUEST:
-                System.out.println("Received LOGIN_REQUEST");
-                break;
-            case LOGIN_RESPONSE:
-                System.out.println("Received LOGIN_RESPONSE");
-                break;
-            case LOGOUT_NOTIFICATION:
-                System.out.println("Received LOGOUT_NOTIFICATION");
-                break;
-            case LOGIN_SUCCESS:
-                System.out.println("Received LOGIN_SUCCESS");
-                break;
-            default:
-                System.out.println("Unknown message type");
-        }
+        // Launch LibGDX application with your Client class
+        Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+        new Lwjgl3Application(new Client(), config);
     }
+
 }

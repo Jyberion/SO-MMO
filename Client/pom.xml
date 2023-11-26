@@ -20,12 +20,6 @@
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>org.apache.mina</groupId>
-            <artifactId>build</artifactId>
-            <version>2.0.0-RC1</version>
-            <type>pom</type>
-        </dependency>
-        <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
             <version>4.1.101.Final</version>
@@ -40,6 +34,18 @@
             <groupId>org.mini2Dx</groupId>
             <artifactId>mini2dx-libgdx</artifactId>
             <version>2.0.0-alpha.82</version>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx</artifactId>
+            <version>1.12.1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-backend-lwjgl3</artifactId>
+            <version>1.12.1</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
     <properties>
