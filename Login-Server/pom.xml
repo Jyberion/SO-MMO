@@ -11,4 +11,50 @@
         <exec.mainClass>com.server.auth.ServerAuth</exec.mainClass>
     </properties>
     <name>Login-server</name>
+        <repositories>
+        <repository>
+            <id>sonatype-oss-public</id>
+            <url>https://oss.sonatype.org/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>maven-public</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.101.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-parent</artifactId>
+            <version>2.0.0-alpha0</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.mini2Dx</groupId>
+            <artifactId>mini2dx-libgdx</artifactId>
+            <version>2.0.0-alpha.82</version>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx</artifactId>
+            <version>1.12.1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-platform</artifactId>
+            <version>1.10.0</version>
+            <classifier>natives-desktop</classifier>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-backend-lwjgl3</artifactId>
+            <version>1.12.1</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>

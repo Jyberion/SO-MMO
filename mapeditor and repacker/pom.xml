@@ -1,0 +1,35 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>mygroupid</groupId>
+  <artifactId>Editor-Tools</artifactId>
+  <version>0.0-SNAPSHOT</version>
+    <repositories>
+      <repository>
+          <id>sonatype-oss-public</id>
+          <url>https://oss.sonatype.org/content/groups/public/</url>
+      </repository>
+      <repository>
+          <id>maven-public</id>
+          <url>https://repo1.maven.org/maven2/</url>
+      </repository>
+            <repository>
+          <id>Atlassian Repository</id>
+          <url>https://packages.atlassian.com/mvn/maven-atlassian-external/</url>
+      </repository>
+            <repository>
+          <id>hortonworks</id>
+          <url>https://repo.hortonworks.com/content/repositories/releases/</url>
+      </repository>
+            <repository>
+          <id>Spring</id>
+          <url>https://repo.spring.io/plugins-release/</url>
+      </repository>
+    </repositories>
+  <dependencies>
+  </dependencies>
+    <name>Editor-Tools</name>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+</project>

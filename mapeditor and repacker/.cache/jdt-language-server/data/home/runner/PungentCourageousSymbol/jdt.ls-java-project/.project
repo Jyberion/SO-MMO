@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>jdt.ls-java-project</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>src/AssetManager.java</name>
+			<type>1</type>
+			<location>/home/runner/PungentCourageousSymbol/assets/AssetManager.java</location>
+		</link>
+		<link>
+			<name>src/EncryptionUtils.java</name>
+			<type>1</type>
+			<location>/home/runner/PungentCourageousSymbol/assets/EncryptionUtils.java</location>
+		</link>
+		<link>
+			<name>src/Main.java</name>
+			<type>1</type>
+			<location>/home/runner/PungentCourageousSymbol/Main.java</location>
+		</link>
+		<link>
+			<name>src/MapEditor.java</name>
+			<type>1</type>
+			<location>/home/runner/PungentCourageousSymbol/mapeditor/MapEditor.java</location>
+		</link>
+	</linkedResources>
+</projectDescription>

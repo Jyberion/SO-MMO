@@ -1,12 +1,9 @@
 C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\client\auth\AuthServerMessage.java
-C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\provider\DataEntity.java
 C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\client\auth\AuthServerMessageType.java
+C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\utils\file\EncryptionUtils.java
+C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\utils\net\NetworkUtils.java
 C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\client\auth\AuthenticationHandler.java
-C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\ByteBuffer.java
-C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\provider\files\DataType.java
-C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\provider\files\SSFileChecker.java
-C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\provider\files\SSFileManager.java
 C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\client\auth\AuthServerHandler.java
-C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\provider\files\UIData.java
+C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\client\DesktopLauncher.java
 C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\client\Client.java
-C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\provider\files\MapData.java
+C:\Users\Jyber\OneDrive\Desktop\SO\Client\src\main\java\com\client\ui\LoginUI.java

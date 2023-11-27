@@ -1,0 +1,12 @@
+com\client\ui\LoginUI.class
+com\client\ui\LoginUI$1.class
+com\utils\file\EncryptionUtils.class
+Client.class
+com\client\auth\AuthenticationHandler.class
+com\client\auth\AuthServerMessage.class
+com\client\auth\AuthServerMessageType.class
+Client$1.class
+com\utils\net\NetworkUtils$1.class
+com\utils\net\NetworkUtils.class
+com\client\DesktopLauncher.class
+com\client\auth\AuthServerHandler.class
